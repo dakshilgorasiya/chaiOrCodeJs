@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+
+    <style>
+        img {
+            width: 100px;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing Image</h2>
+    <div>
+        <ul id="images">
+            <li><img src="../08_events/img/logo1.webp" id="apple" alt="Photoshop"></li>
+            <li><img src="../08_events/img/logo2.webp" id="microsoft" alt=""></li>
+            <li><img src="../08_events/img/logo3.webp" id="hp" alt=""></li>
+            <!-- <li><img src="../08_events/img/logo3.webp" id="hp" alt="" onclick="alert('hp')"></li>   This apporoch will work but not scalable -->
+            <li><img src="../08_events/img/logo4.webp" id="skype" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+
+
+
+    /*
+        Imp event
+        types, timestamp, defaultPrevented
+        target, toElement, srcElement, currentTarget
+        clientX, clientY, screentX, screentY, offset
+        altket, ctrlkey, shiftkey, keyCode
+    */
+
+
+    // this apporoch give less feature
+    // document.getElementById('hp').onclick = function(){
+    //     alert('hp');
+    // }
+
+
+
+
+    //another apporoch
+    //attachEvent()
+    // jQuery - on
+
+    // best apporoch
+    // document.getElementById('hp').addEventListener('click', function () { 
+    //     alert("click")
+    // }, false)  // last false is bydefault false
+
+
+
+
+    // third parameter false -> event bubbleing
+    // true -> event capturing
+
+
+
+    // event bubbleing  (bottom to top event will capture first li and then ul)
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('click inside the ul');
+    // }, false)  // last false is bydefault false
+
+    // document.getElementById('hp').addEventListener('click', function (e) {
+    //     console.log('hp clicked');
+    // }, false)
+
+
+
+    // event capturing  (top to bottom event will capture first ul and then li)
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('click inside the ul');
+    // }, true)  // last false is bydefault false
+
+    // document.getElementById('hp').addEventListener('click', function (e) {
+    //     console.log('hp clicked');
+    // }, true)
+
+
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('click inside the ul');
+    // }, false)  // last false is bydefault false
+
+    // document.getElementById('hp').addEventListener('click', function (e) {
+    //     console.log('hp clicked');
+    //     e.stopPropagation();  // it will stop bubbling or capturing(stop propagation)
+    // }, false)
+
+
+
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     e.preventDefault()  // stop default behaviour
+    //     console.log('google clicked');
+    //     e.stopPropagation();
+    // }, false)
+
+
+
+
+    document.querySelector('#images').addEventListener('click', function (e) {
+        // console.log(e.target.parentNode);
+        let removeIt = e.target.parentNode;
+
+
+        // remove is new method to remove
+        if (e.target.tagName == 'IMG') {
+            removeIt.remove();
+        }
+        // removeIt.parentNode.removeChild(removeIt);
+    }, false)
+
+
+
+</script>
+
+</html>
