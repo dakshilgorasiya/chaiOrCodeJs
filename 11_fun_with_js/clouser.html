@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouser</title>
+</head>
+
+<body style="background-color: #121212; color: aliceblue;">
+    <button id="orange">orange</button>
+    <button id="green">green</button>
+</body>
+<script>
+    // function init() {
+    //     let name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name); // we can access name here which is known as lexical scoping
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+
+    // function makeFunc() {
+    //     const name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     return displayName;  // here not only function displayname return but its parent function(lexical scopeing) will also return that's why however after returning makeFunc's execution contest is gone still we have access to name
+    // }
+
+    // const myFunc = makeFunc();
+    // myFunc();
+
+</script>
+
+
+<script>
+
+    // document.getElementById('orange').onclick = function () {
+    //     document.body.style.backgroundColor = 'orange'
+    // }
+    // document.getElementById('green').onclick = function () {
+    //     document.body.style.backgroundColor = 'green'
+    // }
+
+
+    // real world problem
+    function clickHandler(color) {
+        // document.body.style.backgroundColor = `${color}`  // will not work as onclick require function not reference of function
+        return function () {
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+
+    document.getElementById('orange').onclick = clickHandler('orange');
+    document.getElementById('green').onclick = clickHandler('green');
+
+</script>
+
+
+</html>
